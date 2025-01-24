@@ -28,7 +28,7 @@ const colorClasses: { [key: string]: string } = {
 export default function Tag({ children, color = "blue", mods }: Props) {
   return mods ? (
     <div
-      className={`text-foreground bg-backgroundAccent dark:text-foreground dark:bg-backgroundAccent font-medium px-2 py-1 rounded-full text-center border border-strokeMedium dark:border-strokeMedium`}
+      className={`text-sm text-foreground bg-backgroundAccent dark:text-foreground dark:bg-backgroundAccent font-medium px-2 py-1 rounded-full text-center border border-strokeMedium dark:border-strokeMedium`}
     >
       {children}
     </div>

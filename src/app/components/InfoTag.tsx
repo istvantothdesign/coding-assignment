@@ -36,7 +36,7 @@ export default function InfoTag({ children, type }: Props) {
   }
 
   return (
-    <div className="flex gap-1 items-center">
+    <div className="text-sm flex gap-1 items-center">
       {icon && <span className={`${statusColorClass}`}>{icon}</span>}
       <p className={`font-medium `}>{children}</p>
     </div>

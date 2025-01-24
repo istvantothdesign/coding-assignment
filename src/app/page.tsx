@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import ServerCard from "./components/ServerCard";
+import Link from "next/link";
 
 /*
   Welcome to the simplegamehosting coding assignment!
@@ -57,6 +58,10 @@ export default function Home() {
   // Make sure that everything is Typesafe
   // Organise functions
   // Remove extra item from api(colour testing)??
+  // Make tags row a component?
+  // Add motion
+  // Add hover state
+  // Make it responsive
 
   // Colors available for assignment
   const colors: (
@@ -130,44 +135,53 @@ export default function Home() {
   console.log("Checking server data");
   console.log(serverData);
   return (
-    <div>
-      {/* <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]"> */}
-      <div className="bg-background text-foreground dark:bg-background dark:text-foreground">
-        {/* Test card */}
-        <div className="text-black flex flex-col gap-8 row-start-2 items-center sm:items-start">
-          {/* Displaying test cards */}
-          {serverData &&
-            serverData.map((server: any) => (
-              <ServerCard
-                key={server.id}
-                name={server.name}
-                game={server.game}
-                version={server.version}
-                status={server.status}
-                players={server.players}
-                mods={server.mods}
-                region={server.region}
-                type={server.type}
-                typeColor={typeColorMapping[server.type]}
-              />
-            ))}
-        </div>
-
-        {/* main can be deleted and replaced with your own cards */}
-        <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-          <h1 className="text-2xl font-bold">Minecraft Server List</h1>
-          <p className="text-gray-600">
-            Below is the JSON data fetched from <code>/api/mock</code>. Use it
-            to build the UI.
-          </p>
-          <pre className="bg-gray-200 text-gray-800 p-4 rounded-lg w-full overflow-auto max-w-4xl text-sm">
-            {serverData
-              ? JSON.stringify(serverData, null, 2)
-              : "Loading data..."}
-          </pre>
+    <>
+      <section className="w-full flex flex-col items-center">
+        <main className="w-full max-w-7xl">
+          <div className="bg-background text-foreground dark:bg-background dark:text-foreground flex flex-col gap-12">
+            <h1 className="font-bold text-5xl ">List of servers</h1>
+            {/* Displaying card grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4 w-full">
+              {/* Displaying test cards */}
+              {serverData &&
+                serverData.map((server: any) => (
+                  <Link
+                    className="w-full h-full"
+                    key={server.id}
+                    href={`/server/${server.id}`}
+                  >
+                    <ServerCard
+                      name={server.name}
+                      game={server.game}
+                      version={server.version}
+                      status={server.status}
+                      players={server.players}
+                      mods={server.mods}
+                      region={server.region}
+                      type={server.type}
+                      typeColor={typeColorMapping[server.type]}
+                    />
+                  </Link>
+                ))}
+            </div>
+          </div>
         </main>
-        {/* main can be deleted and replaced with your own cards */}
-      </div>
-    </div>
+      </section>
+
+      {/* main can be deleted and replaced with your own cards */}
+      {/* <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start"> */}
+      {/*   <h1 className="text-2xl font-bold">Minecraft Server List</h1> */}
+      {/*   <p className="text-gray-600"> */}
+      {/*     Below is the JSON data fetched from <code>/api/mock</code>. Use it */}
+      {/*     to build the UI. */}
+      {/*   </p> */}
+      {/*   <pre className="bg-gray-200 text-gray-800 p-4 rounded-lg w-full overflow-auto max-w-4xl text-sm"> */}
+      {/*     {serverData */}
+      {/*       ? JSON.stringify(serverData, null, 2) */}
+      {/*       : "Loading data..."} */}
+      {/*   </pre> */}
+      {/* </main> */}
+      {/* main can be deleted and replaced with your own cards */}
+    </>
   );
 }
