@@ -139,7 +139,9 @@ export default function Home() {
       <section className="p-2 sm:p-4 md:p-6 lg:p-8 w-full flex flex-col items-center">
         <main className="w-full max-w-7xl">
           <div className="bg-background text-foreground dark:bg-background dark:text-foreground flex flex-col gap-12">
-            <h1 className="font-bold text-5xl ">List of servers</h1>
+            <h1 className="font-bold text-5xl text-center md:text-left">
+              List of servers
+            </h1>
             {/* Displaying card grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4 w-full">
               {/* Displaying test cards */}
