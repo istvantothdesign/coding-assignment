@@ -4,8 +4,8 @@
 
 /**/
 :root {
-  --background: #white;
-  --background-accent: #f6f6f6;
+  --background: #f6f6f6;
+  --background-accent: white;
   --foreground: black;
   --stroke-medium: #ababab;
   --stroke-light: #dbdbdb;
@@ -34,7 +34,7 @@ body {
 .dark {
   --background: #1e1e1e;
   --background-accent: #171717;
-  --foreground: #ededed;
+  --foreground: white;
   --stroke-medium: #686868;
   --stroke-light: #373737;
 }
