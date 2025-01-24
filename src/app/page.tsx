@@ -54,10 +54,78 @@ export default function Home() {
   }, []);
 
   // Use server side rendering? (server page with client components? )
-  // Focus on the UI first
   // Make sure that everything is Typesafe
-  // Add dark mode as well
-  // Design it first
+  // Organise functions
+  // Remove extra item from api(colour testing)??
+
+  // Colors available for assignment
+  const colors: (
+    | "yellow"
+    | "red"
+    | "green"
+    | "blue"
+    | "orange"
+    | "purple"
+    | "pink"
+    | "teal"
+  )[] = ["yellow", "red", "green", "blue", "orange", "purple", "pink", "teal"];
+
+  // Function to generate a color mapping for types dynamically
+  const generateColorForTypes = (
+    types: string[],
+  ): {
+    [key: string]:
+      | "yellow"
+      | "red"
+      | "green"
+      | "blue"
+      | "orange"
+      | "purple"
+      | "pink"
+      | "teal";
+  } => {
+    let colorMapping: {
+      [key: string]:
+        | "yellow"
+        | "red"
+        | "green"
+        | "blue"
+        | "orange"
+        | "purple"
+        | "pink"
+        | "teal";
+    } = {};
+    let usedColors: Set<string> = new Set();
+
+    types.forEach((type, index) => {
+      // If the type doesn't have a color yet, assign one
+      if (!colorMapping[type]) {
+        const availableColors = colors.filter(
+          (color) => !usedColors.has(color),
+        );
+        if (availableColors.length > 0) {
+          const color = availableColors[0];
+          colorMapping[type] = color;
+          usedColors.add(color);
+        } else {
+          // If no colors are available, recycle them
+          const recycledColor = colors[index % colors.length];
+          colorMapping[type] = recycledColor;
+          usedColors.add(recycledColor);
+        }
+      }
+    });
+
+    return colorMapping;
+  };
+
+  // Get the unique types from the server data
+  const uniqueTypes = serverData
+    ? Array.from(new Set(serverData.map((server) => server.type)))
+    : [];
+
+  // Generate the color mapping for each type
+  const typeColorMapping = generateColorForTypes(uniqueTypes);
 
   console.log("Checking server data");
   console.log(serverData);
@@ -80,19 +148,8 @@ export default function Home() {
                 mods={server.mods}
                 region={server.region}
                 type={server.type}
+                typeColor={typeColorMapping[server.type]}
               />
-
-              // <div
-              //   key={server.id}
-              //   className="bg-gray-200 p-4 rounded-lg w-full overflow-auto max-w-4xl text-sm"
-              // >
-              //   <h2 className="text-lg font-semibold">{server.name}</h2>
-              //   <p>Game: {server.game}</p>
-              //   <p>Players: {server.players}</p>
-              //   <p>Status: {server.status}</p>
-              //   <p>Version: {server.version}</p>
-              //   <p>Type: {server.type}</p>
-              // </div>
             ))}
         </div>
 

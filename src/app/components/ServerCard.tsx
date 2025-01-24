@@ -1,6 +1,7 @@
 import React from "react";
 import Tag from "./Tag";
 import InfoTag from "./InfoTag";
+import { DiVim } from "react-icons/di";
 
 interface Props {
   name: string;
@@ -11,6 +12,15 @@ interface Props {
   mods: string[];
   region: string;
   type: string;
+  typeColor?:
+    | "yellow"
+    | "red"
+    | "green"
+    | "blue"
+    | "orange"
+    | "purple"
+    | "pink"
+    | "teal";
 }
 
 export default function ServerCard({
@@ -22,6 +32,7 @@ export default function ServerCard({
   mods,
   region,
   type,
+  typeColor,
 }: Props) {
   return (
     // change width
@@ -60,7 +71,7 @@ export default function ServerCard({
           <div className="flex gap-2 items-start">
             <p className="font-bold  py-1">Type:</p>
             <div className="flex  gap-1 flex-wrap">
-              <Tag>{type}</Tag>
+              <Tag color={typeColor}>{type}</Tag>
             </div>
           </div>
 
@@ -68,7 +79,13 @@ export default function ServerCard({
           <div className="flex gap-2 items-start">
             <p className="font-bold  py-1">Mods:</p>
             <div className="flex  gap-1 flex-wrap">
-              {mods ? mods.map((mod) => <Tag mods>{mod}</Tag>) : null}
+              {mods
+                ? mods.map((mod, index) => (
+                    <div key={index}>
+                      <Tag mods>{mod}</Tag>
+                    </div>
+                  ))
+                : null}
             </div>
           </div>
         </div>
