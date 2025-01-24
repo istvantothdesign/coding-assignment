@@ -27,9 +27,9 @@ export default function InfoTag({ children, type }: Props) {
       icon = <HiOutlineGlobeAmericas />;
       break;
     case "status":
-      icon = children === "Online" ? <HiCheckCircle /> : <HiXCircle />;
+      icon = children === "online" ? <HiCheckCircle /> : <HiXCircle />;
       statusColorClass =
-        children === "Online" ? "text-green-500" : "text-gray-500";
+        children === "online" ? "text-green-500" : "text-gray-500";
       break;
     default:
       icon = null;

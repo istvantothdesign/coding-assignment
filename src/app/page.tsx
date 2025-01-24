@@ -63,7 +63,6 @@ export default function Home() {
   console.log(serverData);
   return (
     <div>
-      <ServerCard />
       {/* <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]"> */}
       <div className="bg-background text-foreground dark:bg-background dark:text-foreground">
         {/* Test card */}
@@ -71,17 +70,29 @@ export default function Home() {
           {/* Displaying test cards */}
           {serverData &&
             serverData.map((server: any) => (
-              <div
+              <ServerCard
                 key={server.id}
-                className="bg-gray-200 p-4 rounded-lg w-full overflow-auto max-w-4xl text-sm"
-              >
-                <h2 className="text-lg font-semibold">{server.name}</h2>
-                <p>Game: {server.game}</p>
-                <p>Players: {server.players}</p>
-                <p>Status: {server.status}</p>
-                <p>Version: {server.version}</p>
-                <p>Type: {server.type}</p>
-              </div>
+                name={server.name}
+                game={server.game}
+                version={server.version}
+                status={server.status}
+                players={server.players}
+                mods={server.mods}
+                region={server.region}
+                type={server.type}
+              />
+
+              // <div
+              //   key={server.id}
+              //   className="bg-gray-200 p-4 rounded-lg w-full overflow-auto max-w-4xl text-sm"
+              // >
+              //   <h2 className="text-lg font-semibold">{server.name}</h2>
+              //   <p>Game: {server.game}</p>
+              //   <p>Players: {server.players}</p>
+              //   <p>Status: {server.status}</p>
+              //   <p>Version: {server.version}</p>
+              //   <p>Type: {server.type}</p>
+              // </div>
             ))}
         </div>
 
