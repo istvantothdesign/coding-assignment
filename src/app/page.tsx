@@ -136,7 +136,7 @@ export default function Home() {
   console.log(serverData);
   return (
     <>
-      <section className="w-full flex flex-col items-center">
+      <section className="p-2 sm:p-4 md:p-6 lg:p-8 w-full flex flex-col items-center">
         <main className="w-full max-w-7xl">
           <div className="bg-background text-foreground dark:bg-background dark:text-foreground flex flex-col gap-12">
             <h1 className="font-bold text-5xl ">List of servers</h1>
