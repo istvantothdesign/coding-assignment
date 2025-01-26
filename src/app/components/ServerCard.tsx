@@ -1,7 +1,6 @@
 import React from "react";
 import Tag from "./Tag";
 import InfoTag from "./InfoTag";
-import { DiVim } from "react-icons/di";
 
 interface Props {
   name: string;
@@ -79,9 +78,9 @@ export default function ServerCard({
           <div className="flex  gap-1 flex-wrap">
             {mods
               ? mods.map((mod, index) => (
-                  <div key={index}>
-                    <Tag mods>{mod}</Tag>
-                  </div>
+                  <Tag key={index} mods>
+                    {mod}
+                  </Tag>
                 ))
               : null}
           </div>

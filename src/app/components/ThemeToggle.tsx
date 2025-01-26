@@ -3,12 +3,10 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { HiDesktopComputer } from "react-icons/hi";
-import { HiOutlineSun } from "react-icons/hi";
-import { HiOutlineMoon } from "react-icons/hi";
+import ThemeIcon from "./ThemeIcon";
 
 export default function ThemeToggle() {
-  const { systemTheme, theme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -17,41 +15,24 @@ export default function ThemeToggle() {
 
   if (!mounted) return null;
 
-  const currentTheme = theme === "system" ? systemTheme : theme;
-
   return (
-    <div className="bg-background text-foreground dark:bg-background dark:text-foreground">
-      {/* Toggle */}
-      {/* <button */}
-      {/*   onClick={() => setTheme(currentTheme === "dark" ? "light" : "dark")} */}
-      {/*   className="p-2" */}
-      {/* > */}
-      {/*   {currentTheme === "dark" ? "Light Mode" : "Dark Mode"} */}
-      {/* </button> */}
+    <div className="grid grid-cols-3 items-center justify-center bg-background dark:bg-background  border border-strokeMedium  rounded-full">
+      <ThemeIcon
+        onClick={() => setTheme("system")}
+        mode="system"
+        active={theme === "system"}
+      />
+      <ThemeIcon
+        onClick={() => setTheme("light")}
+        mode="light"
+        active={theme === "light"}
+      />
 
-      {/* Select icons */}
-      <div className="flex gap-2">
-        <button onClick={() => setTheme("system")}>
-          <HiDesktopComputer />
-        </button>
-        <button onClick={() => setTheme("light")}>
-          <HiOutlineSun />
-        </button>
-        <button onClick={() => setTheme("dark")}>
-          <HiOutlineMoon />
-        </button>
-      </div>
-
-      {/* Select dropwown */}
-      {/* <select */}
-      {/*   value={theme} */}
-      {/*   onChange={(e) => setTheme(e.target.value)} */}
-      {/*   className="p-2" */}
-      {/* > */}
-      {/*   <option value="system">System</option> */}
-      {/*   <option value="light">Light</option> */}
-      {/*   <option value="dark">Dark</option> */}
-      {/* </select> */}
+      <ThemeIcon
+        onClick={() => setTheme("dark")}
+        mode="dark"
+        active={theme === "dark"}
+      />
     </div>
   );
 }

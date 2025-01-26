@@ -2,8 +2,6 @@ import React from "react";
 import { HiOutlineRefresh } from "react-icons/hi";
 import { HiOutlineUsers } from "react-icons/hi2";
 import { HiOutlineGlobeAmericas } from "react-icons/hi2";
-// import { HiOutlineCheckCircle } from "react-icons/hi2";
-// import { HiOutlineXCircle } from "react-icons/hi2";
 import { HiCheckCircle } from "react-icons/hi2";
 import { HiXCircle } from "react-icons/hi2";
 
@@ -14,7 +12,7 @@ interface Props {
 
 export default function InfoTag({ children, type }: Props) {
   let icon;
-  let statusColorClass = "";
+  let statusColorClass;
 
   switch (type) {
     case "version":
