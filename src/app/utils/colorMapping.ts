@@ -13,8 +13,8 @@ export const generateColorForTypes = (
   types: string[],
   colors: Color[], // Use the specific "Color" type here
 ): Record<string, Color> => {
-  let colorMapping: Record<string, Color> = {}; // Now, "colorMapping" will only accept values from the "Color" type
-  let usedColors: Set<Color> = new Set();
+  const colorMapping: Record<string, Color> = {}; // Now, "colorMapping" will only accept values from the "Color" type
+  const usedColors: Set<Color> = new Set();
 
   types.forEach((type, index) => {
     if (!colorMapping[type]) {

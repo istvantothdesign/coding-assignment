@@ -9,12 +9,30 @@ interface Server {
   region: string;
   mods: string[];
 }
+
 // Function to fetch server data
 export const fetchServerData = async (): Promise<Server[]> => {
-  const response = await fetch("http://localhost:3000/api/mock");
-  const data: Server[] = await response.json();
+  try {
+    const response = await fetch(
+      // This is for local testing
+      `http://localhost:3000/api/mock`,
 
-  // Added this to simulate a short delay so you can check out the loading state as well. 🙂
-  await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulating a 2-second delay
-  return data;
+      // This is for production
+      // `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/mock`,
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch data");
+    }
+
+    const data: Server[] = await response.json();
+
+    // Simulating a little delay so you can see the loading state as well 🙂
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching server data:", error);
+    return [];
+  }
 };
